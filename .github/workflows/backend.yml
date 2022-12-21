@@ -15,4 +15,4 @@ jobs:
           java-version: 17
           distribution: 'adopt'
       - name: Checking the style of main
-        run: cd backend && gradle checkstyleMain
+        run: cd server && gradle checkstyleMain
