@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './App.css';
+import './Layout.css';
 
-function App() {
+function Layout() {
   const [count, setCount] = useState(0);
 
   return (
@@ -11,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+export default Layout;
