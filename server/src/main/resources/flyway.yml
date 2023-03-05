@@ -1,0 +1,5 @@
+spring:
+  flyway:
+    url: ${env.DB_URL}
+    user: mms
+    password: mms
