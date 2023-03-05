@@ -44,13 +44,11 @@ CREATE TABLE CurrencyType(
                              PRIMARY KEY(ID)
 );
 
-CREATE TABLE Invoices (
+CREATE TABLE Account (
                           ID INT GENERATED ALWAYS AS IDENTITY,
                           UserID INT,
-    --CurrencyID INT, <-- Ez is minek van??
-                          AllMoney INT,
-                          MoneyRemain INT,
-    --StatusID PK INT, <-- na oszt ez mi a ****!?
+                          CurrencyID INT,
+                          Balance INT,
                           Remark VARCHAR(200),
                           CreateDateTime TIMESTAMP DEFAULT NOW(),
                           LastModifiedDateTime TIMESTAMP DEFAULT NOW(),
@@ -60,7 +58,7 @@ CREATE TABLE Invoices (
                                   REFERENCES Users(ID)
 );
 
-CREATE TABLE CategoryType(
+CREATE TABLE TransactionType(
                              ID INT GENERATED ALWAYS AS IDENTITY,
                              Name VARCHAR(50),
                              Remark VARCHAR(200),
@@ -69,10 +67,9 @@ CREATE TABLE CategoryType(
                              PRIMARY KEY(ID)
 );
 
-CREATE TABLE MoneyHistory(
+CREATE TABLE Transaction(
                              ID INT GENERATED ALWAYS AS IDENTITY,
-    --ManagmentID INT, <-- Ez is mi a rákk!?
-                             CategoryTypeID INT,
+                             TransactionTypeID INT,
                              CurrencyID INT,
                              MoneySpent INT,
                              Remark VARCHAR(200),
@@ -80,8 +77,8 @@ CREATE TABLE MoneyHistory(
                              LastModifiedTime TIMESTAMP DEFAULT NOW(),
                              PRIMARY KEY(ID),
                              CONSTRAINT fk_Category
-                                 FOREIGN KEY(CategoryTypeID)
-                                     REFERENCES CategoryType(ID),
+                                 FOREIGN KEY(TransactionTypeID)
+                                     REFERENCES TransactionType(ID),
                              CONSTRAINT fk_Currency
                                  FOREIGN KEY(CurrencyID)
                                      REFERENCES CurrencyType(ID)
